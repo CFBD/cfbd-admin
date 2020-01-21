@@ -4,5 +4,7 @@ const authController = require('./controller');
 module.exports = (app, passport) => {
     const controller = authController(passport, crypto);
 
-    app.route('/auth').get(controller.authJwt);
+    app.route('/login').get(controller.auth0);
+    app.route('/auth/auth0/callback').get(controller.auth0Callback);
+    app.route('/logout').get(controller.logout);
 };

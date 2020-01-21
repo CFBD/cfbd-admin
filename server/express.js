@@ -1,19 +1,33 @@
 const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const path = require('path');
 const history = require('connect-history-api-fallback');
 
+const expressSession = require('express-session');
+
 const authRoutes = require('./auth/routes');
 
-module.exports = (db, passport, rabbit) => {
+module.exports = (db, passport) => {
     const app = express();
     app.use(helmet());
 
     app.enable('trust proxy');
-    app.use(cookieParser());
+
+    const session = {
+        secret: 'LoxodontaElephasMammuthusPalaeoloxodonPrimelephas',
+        cookie: {},
+        resave: false,
+        saveUninitialized: false
+    };
+
+    if (process.env.NODE_ENV === 'production') {
+        // Serve secure cookies, requires HTTPS
+        session.cookie.secure = true;
+    }
+
+    app.use(expressSession(session));
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({
@@ -21,14 +35,11 @@ module.exports = (db, passport, rabbit) => {
     }));
 
     app.use(passport.initialize());
+    app.use(passport.session());
 
     if (process.env.NODE_ENV === 'development') {
         app.use(cors());
     }
-
-    // const auth = passport.authenticate('jwt', {
-    //     session: false
-    // });
 
     // routes
     authRoutes(app, passport);
