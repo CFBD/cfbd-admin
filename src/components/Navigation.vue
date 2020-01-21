@@ -8,7 +8,7 @@
                     <b-button v-if='!profile' variant='primary' href="/login">
                         Login
                     </b-button>
-                    <b-button v-else variant='warning' href='/logout'>
+                    <b-button v-else variant='danger' href='/logout'>
                         Logout
                     </b-button>
                 </b-navbar-nav>

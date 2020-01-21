@@ -28,6 +28,14 @@
 
 
 <style lang="scss">
+    body {
+        background: url('./assets/bg.jpg') no-repeat scroll;
+        background-attachment: fixed;
+    }
+
+    #app {
+        background: rgba(255, 255, 255, .5);
+    }
 
     .spinner-container {
         margin-top: 4em;
@@ -63,6 +71,7 @@
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
+        padding-bottom: 20px;
     }
 
     #nav {
@@ -76,6 +85,10 @@
                 color: #42b983;
             }
         }
+    }
+
+    html, body, #app {
+        min-height: 100%
     }
 
 </style>
