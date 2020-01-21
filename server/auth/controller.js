@@ -60,5 +60,12 @@ module.exports = (passport) => ({
         logoutURL.search = searchString;
 
         res.redirect(logoutURL);
+    },
+    getProfile: (req, res) => {
+        if (req.isAuthenticated()) {
+            res.send(req.user);
+        } else {
+            res.send(null);
+        }
     }
 });

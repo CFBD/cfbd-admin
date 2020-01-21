@@ -1,7 +1,7 @@
 <template>
     <div id="app">
-        <navigation></navigation>
-        <router-view />
+        <navigation :profile='profile'></navigation>
+        <router-view :profile='profile' />
     </div>
 </template>
 
@@ -11,6 +11,16 @@
     export default {
         components: {
             Navigation
+        },
+        data() {
+            return {
+                profile: null
+            };
+        },
+        created() {
+            this.$axios.get('/api/profile').then((res) => {
+                this.profile = res.data;
+            });
         }
     };
 
