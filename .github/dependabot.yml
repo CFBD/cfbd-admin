@@ -1,0 +1,29 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: dotenv-webpack
+    versions:
+    - 6.0.0
+    - 6.0.2
+    - 6.0.4
+    - 7.0.1
+  - dependency-name: "@vue/cli-plugin-eslint"
+    versions:
+    - 4.5.11
+  - dependency-name: helmet
+    versions:
+    - 4.4.1
+  - dependency-name: "@fortawesome/free-brands-svg-icons"
+    versions:
+    - 5.15.2
+  - dependency-name: lodash
+    versions:
+    - 4.17.20
+  - dependency-name: elliptic
+    versions:
+    - 6.5.3
